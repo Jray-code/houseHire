@@ -1,4 +1,4 @@
  @props(['name'])
  @error($name)
-     <label for="name">{{$message}}</label>
+     <label {{$attributes->merge(['class'=>'text-danger'])}}>{{$message}}</label>
  @enderror

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class authContoller extends Controller
 {
@@ -35,6 +38,35 @@ class authContoller extends Controller
     public function store(Request $request)
     {
         //
+        $validate=request()->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'password'=>'required|confirmed',
+        ]);
+       $create= User::create($validate);
+        Auth::login($create);
+        return redirect('/home');
+    }
+    public function logout(Request $request, User $user)
+    {
+        //
+        Auth::logout($user);
+        return redirect('/login');
+    }
+    public function login(Request $request, User $user)
+    {
+        //
+        $validate=request()->validate([
+            'email'=>'required|email',
+            'password'=>'required',
+        ]);
+        if(!Auth::attempt($validate)){
+            throw ValidationException::withMessages(['alert'=>'Wrong credentials']);
+        }
+        request()-session()->regenerate();
+        return redirect('/');
+       
+       
     }
 
     /**

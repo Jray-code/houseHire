@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-4 pb-4 px-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">my<span><b>House</b></span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -35,14 +35,21 @@
                         </li>
 
                     </ul>
-
                     <ul class="navbar-nav">
+                        @guest()
                         <li class="nav-item">
                             <x-link href="/login" :active="request()->is('login')">Login</x-link>
                         </li>
                         <li class="nav-item">
                             <x-link href="/signin" :active="request()->is('signin')">Create account</x-link>
                         </li>
+                        @endguest
+                        @auth()
+                        <form action="logout-user" method="post">
+                            @csrf
+                           <x-button type='submit'>Log out</x-button>
+                        </form>
+                        @endauth
                     </ul>
                 </div>
             </div>

@@ -9,11 +9,7 @@
 
     <div class="container">
         <h2>Available Houses</h2>
-        <ul>
-            {{-- @foreach ($houses as $house)
-                <li>{{ $house->name }} - {{ $house->location }}</li>
-            @endforeach --}}
-        </ul>
+     
     </div>
 
     <div class="container">

@@ -1,1 +1,1 @@
-<button class="btn btn-primary">{{$slot}}</button>
+<button class="btn btn-dark">{{$slot}}</button>

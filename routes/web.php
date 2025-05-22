@@ -17,3 +17,6 @@ Route::get('/contact', function () {
 });
 Route::get('login',[authContoller::class, 'index']);
 Route::get('signin',[authContoller::class, 'signin']);
+Route::post('create-user',[authContoller::class, 'store']);
+Route::post('logout-user',[authContoller::class, 'logout']);
+Route::post('login-user',[authContoller::class, 'login']);
